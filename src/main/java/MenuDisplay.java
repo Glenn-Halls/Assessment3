@@ -18,6 +18,12 @@ public class MenuDisplay {
      */
     private static final String filePath = "src/res/CarList.csv";
 
+    /**
+     * Red color for error messages and reset color to revert.
+     */
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
+
 
     /**
      * Displays a table of available cars, the number of cars available
@@ -78,7 +84,8 @@ public class MenuDisplay {
          * by array "columnStart".
          */
         if (!CarList.isFile()) {
-            System.out.println("Error: file not found.");
+            System.out.printf("%sError: file not found.%s%n",
+                    ANSI_RED, ANSI_RESET);
             System.exit(1);
         } else {
             try {
@@ -99,14 +106,17 @@ public class MenuDisplay {
                 }
                 fileText.close();
             } catch (FileNotFoundException e) {
-                System.out.println("Error: file not found.");
+                System.out.printf("%sError: file not found.%s%n",
+                        ANSI_RED, ANSI_RESET);
                 System.exit(1);
             } catch (SecurityException e) {
-                System.out.println("Error: file access denied.");
+                System.out.printf("%sError: file access denied.%s%n",
+                        ANSI_RED, ANSI_RESET);
                 System.out.println(e.getMessage());
                 System.exit(2);
             } catch (Exception e) {
-                System.out.println("Error: an unknown error occurred.");
+                System.out.printf("%sError: an unknown error occurred.%s%n",
+                        ANSI_RED, ANSI_RESET);
                 System.out.println(e.getMessage());
                 System.exit(3);
             }
@@ -137,5 +147,49 @@ public class MenuDisplay {
         for (int i = 0; i < numSpaces; i++) {
             System.out.print(" ");
         }
+    }
+
+    /**
+     * Prompt user to either make a booking or exit the system.
+     * @return integer 1 to make a booking or 2 to exit.
+     */
+    public static int getSelection() {
+        // Helper object
+        Scanner keyboard = new Scanner(System.in);
+
+        boolean validInput;
+        int selection = 0;
+
+        System.out.print("""
+                Please select from the following options.
+                    
+                        1. Proceed with booking
+                        2. Exit
+                         
+                Enter your selection:\s""");
+
+        do {
+            String input = keyboard.nextLine();
+            if (input.length() != 1) {
+                System.out.printf("%n%sInvalid menu option, try again.%s%n%n",
+                        ANSI_RED, ANSI_RESET);
+                System.out.print("Enter 1 to proceed or 2 to exit: ");
+                validInput = false;
+            } else {
+                switch (input.charAt(0)) {
+                    case '1':
+                        validInput = true;
+                        selection = 1;
+                        break;
+                    case '2':
+                        validInput = true;
+                        selection = 2;
+                        break;
+                    default:
+                        validInput = false;
+                }
+            }
+        } while (!validInput);
+        return selection;
     }
 }
