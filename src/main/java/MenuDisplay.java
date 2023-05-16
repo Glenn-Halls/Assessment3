@@ -171,9 +171,9 @@ public class MenuDisplay {
         do {
             String input = keyboard.nextLine();
             if (input.length() != 1) {
-                System.out.printf("%n%sInvalid menu option, try again.%s%n%n",
-                        ANSI_RED, ANSI_RESET);
-                System.out.print("Enter 1 to proceed or 2 to exit: ");
+                System.out.printf("%n%sInvalid input: too many characters." +
+                                "%s%n", ANSI_RED, ANSI_RESET);
+                System.out.print("Enter a single character and press enter: ");
                 validInput = false;
             } else {
                 switch (input.charAt(0)) {
@@ -186,6 +186,9 @@ public class MenuDisplay {
                         selection = 2;
                         break;
                     default:
+                        System.out.printf("%n%sInvalid menu option, try again" +
+                                        ".%s%n",ANSI_RED, ANSI_RESET);
+                        System.out.print("Enter 1 to proceed or 2 to exit: ");
                         validInput = false;
                 }
             }
