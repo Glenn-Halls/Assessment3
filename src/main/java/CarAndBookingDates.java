@@ -78,8 +78,22 @@ public class CarAndBookingDates {
     }
 
     public static int promptForYear() {
-        return getInt(4, 4, "Please enter the year - for example '2023'",
-                "year");
+        String input;
+        boolean validInput;
+        int year = 0;
+        System.out.print("Please enter the year - for example '2023: ");
+        do {
+            input = keyboard.nextLine();
+            if (validateYearString(input)) {
+                year = Integer.parseInt(input);
+                validInput = true;
+            } else {
+                System.out.printf("%sInvalid year entry, try again: %s",
+                        ANSI_RED, ANSI_RESET);
+                validInput = false;
+            }
+        } while (!validInput);
+        return year;
     }
 
     public static int promptForMonth() {
