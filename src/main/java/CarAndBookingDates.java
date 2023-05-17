@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -13,13 +14,14 @@ public class CarAndBookingDates {
     private int day;
 
     // Helper object
-    static Scanner keyboard = new Scanner(System.in);
-
+    private static final Scanner keyboard = new Scanner(System.in);
 
     public CarAndBookingDates() {
-        year = 0;
-        month = 0;
-        day = 0;
+        Calendar today = Calendar.getInstance();
+        year = today.get(Calendar.YEAR);
+        // Value of month increased by 1 as Calendar indexes months from 0.
+        month = today.get(Calendar.MONTH ) + 1;
+        day = today.get(Calendar.DAY_OF_MONTH);
     }
 
     public static int carSelection(int carsAvailable) {
@@ -48,7 +50,14 @@ public class CarAndBookingDates {
         return selection;
     }
 
-    public static int promptForYear() {
+    public LocalDate getCarBookingDateFull() {
+        year = promptForYear();
+        month = promptForMonth();
+        day = promptForDay();
+        return LocalDate.of(year, month, day);
+    }
+
+    private int promptForYear() {
         String input;
         boolean validInput;
         int year = 0;
@@ -67,7 +76,7 @@ public class CarAndBookingDates {
         return year;
     }
 
-    public static int promptForMonth() {
+    private int promptForMonth() {
         String input;
         boolean validInput;
         int month = 0;
@@ -86,7 +95,7 @@ public class CarAndBookingDates {
         return month;
     }
 
-    public static int promptForDay() {
+    private int promptForDay() {
         String input;
         boolean validInput;
         int day = 0;
@@ -105,7 +114,7 @@ public class CarAndBookingDates {
         return day;
     }
 
-    public static boolean validateYearString(String yearString) {
+    private boolean validateYearString(String yearString) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int year;
         if (yearString.length() != 4) return false;
@@ -117,7 +126,7 @@ public class CarAndBookingDates {
         return (year >= currentYear);
     }
 
-    public static boolean validateMonthString(String monthString) {
+    private boolean validateMonthString(String monthString) {
         if (monthString.length() < 1 || monthString.length() > 2) {
             return false;
         }
@@ -129,7 +138,7 @@ public class CarAndBookingDates {
         }
     }
 
-    public static boolean validateDayString(String dayString) {
+    private boolean validateDayString(String dayString) {
         if (dayString.length() < 1 || dayString.length() > 2) {
             return false;
         }
