@@ -14,14 +14,10 @@ public class CarAndBookingDates {
     static Scanner keyboard = new Scanner(System.in);
 
 
-    public CarAndBookingDates(int year1, int month1, int day1) {
-        year = year1;
-        month = month1;
-        day = day1;
-    }
-
     public CarAndBookingDates() {
-        this(0,0,0);
+        year = promptForYear();
+        month = promptForMonth();
+        day = promptForDay();
     }
 
     public static int carSelection(int carsAvailable) {
@@ -48,5 +44,49 @@ public class CarAndBookingDates {
             validInput = (number > 0 && number <= carsAvailable);
         } while (!validInput);
         return selection;
+    }
+
+    public static int getInt(int minChars, int maxChars, String prompt,
+                             String dataLabel) {
+        int number = 0;
+        boolean validInput;
+        String input;
+        do {
+            System.out.print(prompt + ": ");
+            input = keyboard.nextLine();
+            try {
+                number = Integer.parseInt(input);
+            } catch (NumberFormatException nfe){
+                validInput = false;
+                System.out.printf("%sInvalid %s selection: not a valid " +
+                        "number.%s%n%n", ANSI_RED, dataLabel, ANSI_RESET);
+                continue;
+            }
+            if (input.length() < minChars) {
+                System.out.printf("%sInvalid %s selection: not enough digits" +
+                                ".%s%n%n", ANSI_RED, dataLabel, ANSI_RESET);
+            } else if (input.length() > maxChars) {
+                System.out.printf("%sInvalid %s selection: too many digits.%s" +
+                        "%n%n", ANSI_RED, dataLabel, ANSI_RESET);
+            }
+            validInput = (input.length() >= minChars &&
+                    input.length() <= maxChars);
+        } while (!validInput);
+        return number;
+    }
+
+    public static int promptForYear() {
+        return getInt(4, 4, "Please enter the year - for example '2023'",
+                "year");
+    }
+
+    public static int promptForMonth() {
+        return getInt(1, 2, "Please enter the month number - for example '7'",
+                "month");
+    }
+
+    public static int promptForDay() {
+        return getInt(1, 2, "Please enter the day number - for example '21'",
+                "day");
     }
 }
