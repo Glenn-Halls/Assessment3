@@ -81,7 +81,7 @@ public class CarAndBookingDates {
         String input;
         boolean validInput;
         int year = 0;
-        System.out.print("Please enter the year - for example '2023: ");
+        System.out.print("Please enter the year - for example '2023': ");
         do {
             input = keyboard.nextLine();
             if (validateYearString(input)) {
@@ -97,13 +97,41 @@ public class CarAndBookingDates {
     }
 
     public static int promptForMonth() {
-        return getInt(1, 2, "Please enter the month number - for example '7'",
-                "month");
+        String input;
+        boolean validInput;
+        int month = 0;
+        System.out.print("Please enter the month number - for example '9': ");
+        do {
+            input = keyboard.nextLine();
+            if (validateMonthString(input)) {
+                month = Integer.parseInt(input);
+                validInput = true;
+            } else {
+                System.out.printf("%sInvalid month entry, try again: %s",
+                        ANSI_RED, ANSI_RESET);
+                validInput = false;
+            }
+        } while (!validInput);
+        return month;
     }
 
     public static int promptForDay() {
-        return getInt(1, 2, "Please enter the day number - for example '21'",
-                "day");
+        String input;
+        boolean validInput;
+        int day = 0;
+        System.out.print("Please enter the day - for example '12': ");
+        do {
+            input = keyboard.nextLine();
+            if (validateDayString(input)) {
+                day = Integer.parseInt(input);
+                validInput = true;
+            } else {
+                System.out.printf("%sInvalid day entry, try again: %s",
+                        ANSI_RED, ANSI_RESET);
+                validInput = false;
+            }
+        } while (!validInput);
+        return day;
     }
 
     public static boolean validateYearString(String yearString) {
@@ -141,7 +169,4 @@ public class CarAndBookingDates {
             return false;
         }
     }
-
-
-
 }
