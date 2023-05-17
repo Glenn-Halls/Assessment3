@@ -1,3 +1,5 @@
+
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class CarAndBookingDates {
@@ -15,9 +17,9 @@ public class CarAndBookingDates {
 
 
     public CarAndBookingDates() {
-        year = promptForYear();
-        month = promptForMonth();
-        day = promptForDay();
+        year = 0;
+        month = 0;
+        day = 0;
     }
 
     public static int carSelection(int carsAvailable) {
@@ -89,4 +91,43 @@ public class CarAndBookingDates {
         return getInt(1, 2, "Please enter the day number - for example '21'",
                 "day");
     }
+
+    public static boolean validateYearString(String yearString) {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int year;
+        if (yearString.length() != 4) return false;
+        try {
+            year = Integer.parseInt(yearString);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return (year >= currentYear);
+    }
+
+    public static boolean validateMonthString(String monthString) {
+        if (monthString.length() < 1 || monthString.length() > 2) {
+            return false;
+        }
+        try {
+            int month = Integer.parseInt(monthString);
+            return (month >= 1 && month <= 13);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    public static boolean validateDayString(String dayString) {
+        if (dayString.length() < 1 || dayString.length() > 2) {
+            return false;
+        }
+        try {
+            int day = Integer.parseInt(dayString);
+            return (day >= 1 && day <= 31);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+
+
 }
