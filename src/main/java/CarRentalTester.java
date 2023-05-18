@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Date;
 
 public class CarRentalTester {
     public static void main(String[] args) {
@@ -25,5 +24,10 @@ public class CarRentalTester {
                 test.getCarNumber(),
                 test.getNewRate(),
                 test.getCarName());
+
+        Car car = new Car(test.getCarName(), test.getNewRate());
+        System.out.println(car.getCarName());
+        System.out.println(car.getCarRate());
     }
+
 }
