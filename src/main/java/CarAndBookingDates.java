@@ -40,7 +40,7 @@ public class CarAndBookingDates {
                 continue;
             }
             if (number < 1 || number > carsAvailable) {
-                System.out.printf("%sInvalid car selection: \"%d\" is not on " +
+                System.out.printf("%sInvalid car selection: '%d' is not on " +
                         "the list.%s%n%n", ANSI_RED, number, ANSI_RESET);
             } else {
                 selection = number;

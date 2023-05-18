@@ -16,7 +16,7 @@ public class MenuDisplay {
     /**
      * Path of CSV file to be used.
      */
-    private static final String filePath = "src/res/CarList.csv";
+    private static final String FILE_PATH = "src/res/CarList.csv";
 
     /**
      * Red color for error messages and reset color to revert.
@@ -39,7 +39,7 @@ public class MenuDisplay {
         final int[] columnStart = {0, 10, 29, 38, 54, 69};
         final String[] columnName = {"Car No.", "Car Name", "Seats",
                 "Transmission", "Car Type", "Rate/Day($)"};
-        File CarList = new File(filePath);
+        File CarList = new File(FILE_PATH);
         int cursorAt = 0;
 
         // Display welcome banner.
