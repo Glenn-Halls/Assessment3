@@ -42,7 +42,11 @@ public class CarBooking {
             dailyRate = Double.parseDouble(carDetails[5]);
             carName = carDetails[1];
             cost = dailyRate;
-            car = new Car(carName, dailyRate);
+            if (premiumCar) {
+                car = new PremiumCar(carName, dailyRate);
+            } else {
+                car = new Car(carName, dailyRate);
+            }
         } catch (FileNotFoundException e) {
             System.out.printf("%sError: file not found.%s%n",
                     ANSI_RED, ANSI_RESET);
@@ -58,7 +62,7 @@ public class CarBooking {
             System.out.println(e.getMessage());
             System.exit(3);
         }
-        newRate = (premiumCar) ? 1.05 : 1;
+        newRate = (premiumCar) ? 1.05 * cost : cost;
         calculateTotalDays();
         calculateCost(newRate, totalDays);
     }
@@ -68,7 +72,7 @@ public class CarBooking {
     }
 
     private void calculateCost(double newRate, long totalDays) {
-        cost = totalDays * cost * newRate;
+        cost = totalDays * newRate;
     }
 
     public double getCost() { return cost; }

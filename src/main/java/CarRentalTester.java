@@ -4,7 +4,7 @@ public class CarRentalTester {
     public static void main(String[] args) {
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = LocalDate.of(2023, 5, 19);
-        CarBooking test = new CarBooking(today, tomorrow, 5);
+        CarBooking test = new CarBooking(today, tomorrow, 4);
         test.makeBooking();
         System.out.printf("""
                 
@@ -25,10 +25,10 @@ public class CarRentalTester {
                 test.getNewRate(),
                 test.getCarName());
 
-        Car car = new Car(test.getCarName(), test.getNewRate());
+        Car car = new Car(test.getCarName(), test.getCost());
         System.out.println(car.getCarName());
         System.out.println(car.getCarRate());
-        System.out.println(test);
+        System.out.println(car);
     }
 
 }

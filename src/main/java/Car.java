@@ -1,6 +1,6 @@
 public class Car {
 
-    private double carRate;
+    double carRate;
     private String carName;
 
     // Class constructor
