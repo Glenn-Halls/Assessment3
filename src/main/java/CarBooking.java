@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Scanner;
 
 public class CarBooking {
@@ -13,6 +12,7 @@ public class CarBooking {
     private double newRate;
     private double cost;
     private String carName;
+    public Car car;
 
 
     private static final String FILE_PATH = "src/res/CarList.csv";
@@ -29,6 +29,7 @@ public class CarBooking {
         String[] carDetails = new String[6];
         File carList = new File(FILE_PATH);
         boolean premiumCar = false;
+        double dailyRate;
         try {
             Scanner fileText = new Scanner(carList);
             for (int i = 1; i <= carNumber; i++) {
@@ -37,9 +38,11 @@ public class CarBooking {
                     carDetails = line.split(",");
                 }
             }
-            carName = carDetails[1];
             premiumCar = (carDetails[4].toLowerCase().contains("premium"));
-            cost = Double.parseDouble(carDetails[5]);
+            dailyRate = Double.parseDouble(carDetails[5]);
+            carName = carDetails[1];
+            cost = dailyRate;
+            car = new Car(carName, dailyRate);
         } catch (FileNotFoundException e) {
             System.out.printf("%sError: file not found.%s%n",
                     ANSI_RED, ANSI_RESET);

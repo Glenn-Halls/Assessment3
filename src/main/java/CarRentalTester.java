@@ -28,6 +28,7 @@ public class CarRentalTester {
         Car car = new Car(test.getCarName(), test.getNewRate());
         System.out.println(car.getCarName());
         System.out.println(car.getCarRate());
+        System.out.println(test);
     }
 
 }
