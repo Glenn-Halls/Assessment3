@@ -60,6 +60,7 @@ public class CarRentalTester {
             } while (!validDates);
 
             CarBooking carBooking = new CarBooking(start, end, carSelected);
+            carBooking.makeBooking();
 
             System.out.println();
             Customer customer = new Customer();
