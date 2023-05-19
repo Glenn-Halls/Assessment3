@@ -9,9 +9,9 @@ public class CarAndBookingDates {
     private static final String ANSI_RESET = "\u001B[0m";
 
     // Instance variables.
-    private int year;
-    private int month;
-    private int day;
+    private static int year;
+    private static int month;
+    private static int day;
 
     // Helper object
     private static final Scanner keyboard = new Scanner(System.in);
@@ -50,14 +50,14 @@ public class CarAndBookingDates {
         return selection;
     }
 
-    public LocalDate getCarBookingDateFull() {
+    public static LocalDate getCarBookingDateFull() {
         year = promptForYear();
         month = promptForMonth();
         day = promptForDay();
         return LocalDate.of(year, month, day);
     }
 
-    private int promptForYear() {
+    private static int promptForYear() {
         String input;
         boolean validInput;
         int year = 0;
@@ -76,7 +76,7 @@ public class CarAndBookingDates {
         return year;
     }
 
-    private int promptForMonth() {
+    private static int promptForMonth() {
         String input;
         boolean validInput;
         int month = 0;
@@ -95,7 +95,7 @@ public class CarAndBookingDates {
         return month;
     }
 
-    private int promptForDay() {
+    private static int promptForDay() {
         String input;
         boolean validInput;
         int day = 0;
@@ -114,7 +114,7 @@ public class CarAndBookingDates {
         return day;
     }
 
-    private boolean validateYearString(String yearString) {
+    private static boolean validateYearString(String yearString) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int year;
         if (yearString.length() != 4) return false;
@@ -126,7 +126,7 @@ public class CarAndBookingDates {
         return (year >= currentYear);
     }
 
-    private boolean validateMonthString(String monthString) {
+    private static boolean validateMonthString(String monthString) {
         if (monthString.length() < 1 || monthString.length() > 2) {
             return false;
         }
@@ -138,7 +138,7 @@ public class CarAndBookingDates {
         }
     }
 
-    private boolean validateDayString(String dayString) {
+    private static boolean validateDayString(String dayString) {
         if (dayString.length() < 1 || dayString.length() > 2) {
             return false;
         }

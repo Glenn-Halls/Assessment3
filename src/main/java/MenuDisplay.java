@@ -161,7 +161,7 @@ public class MenuDisplay {
         int selection = 0;
 
         System.out.print("""
-                Please select from the following options.
+                Please select from the following options
                     
                         1. Proceed with booking
                         2. Exit
