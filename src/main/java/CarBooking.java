@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class CarBooking {
@@ -68,7 +69,7 @@ public class CarBooking {
     }
 
     private void calculateTotalDays() {
-        totalDays = endDate.compareTo(startDate);
+        totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
     }
 
     private void calculateCost(double newRate, long totalDays) {
