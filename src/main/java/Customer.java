@@ -37,14 +37,23 @@ public class Customer {
      * "requiredField" and displays helper error messages in the case of
      * invalid user input.
      * @param requiredField required user input field: name / address / email
-     * @param args required characters for input field such as @ for email
+     * @param args required characters for input field such as '@' for email
      * @return String
      */
     public static String getString(String requiredField, char... args) {
+        // Helper object.
         Scanner keyboard = new Scanner(System.in);
+        // Booleans must be true for input to be valid.
         boolean validInput;
         boolean requiredChars = true;
+        // Output string.
         String output;
+
+        /*
+         * While loop will prompt user to enter required information and provide
+         * relevant error messages and prompt user to try again if input is
+         * invalid.
+         */
         System.out.printf("Please enter your %s: ", requiredField);
         do {
             String input = keyboard.nextLine();
