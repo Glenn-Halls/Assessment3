@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
+
+/**
+ * Performs calculations of car booking duration and costs.
+ */
 public class CarBooking {
     // Instance variables
     private final LocalDate startDate;
@@ -15,17 +19,24 @@ public class CarBooking {
     private String carName;
     public Car car;
 
-
+    // Constants for error message colors and file path.
     private static final String FILE_PATH = "src/res/CarList.csv";
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
 
+    // Constructor method to initialise instance variables.
     public CarBooking(LocalDate start, LocalDate end, int carNum) {
         startDate = start;
         endDate = end;
         carNumber = carNum;
     }
 
+    /**
+     * Reads the car list CSV file. If there is an error in doing so, will
+     * display an appropriate error message and quit. If successful, will
+     * calculate days hired and cost of the booking using calculateTotalDays
+     * and calculateCost methods respectively.
+     */
     void makeBooking() {
         String[] carDetails = new String[6];
         File carList = new File(FILE_PATH);
@@ -68,14 +79,24 @@ public class CarBooking {
         calculateCost(newRate, totalDays);
     }
 
+    /**
+     * Calculates the difference in days between the start and end date of hire.
+     */
     private void calculateTotalDays() {
         totalDays = (int)ChronoUnit.DAYS.between(startDate, endDate);
     }
 
+    /**
+     * Calculates the total cost of the car hire.
+     * @param newRate Represents the hire rate, after application of insurance
+     *                premium.
+     * @param totalDays Represents the number of days of the booking.
+     */
     private void calculateCost(double newRate, long totalDays) {
         cost = totalDays * newRate;
     }
 
+    // Accessor methods for instance variables.
     double getCost() { return cost; }
     LocalDate getStartDate() { return startDate; }
     LocalDate getEndDate() { return endDate; }
