@@ -4,10 +4,16 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ * Manages user selections of start and end dates of the booking, and the car
+ * that the user would like to hire.
+ */
+
 public class CarAndBookingDates {
 
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RESET = "\u001B[0m";
+    // Constants for error message colour
+    private final String ANSI_RED = "\u001B[31m";
+    private final String ANSI_RESET = "\u001B[0m";
 
     // Instance variables.
     private int year;
@@ -15,8 +21,12 @@ public class CarAndBookingDates {
     private int day;
 
     // Helper object
-    private static final Scanner keyboard = new Scanner(System.in);
+    private final Scanner keyboard = new Scanner(System.in);
 
+    /**
+     * Constructor initialises instance variables with the default values of
+     * today's date.
+     */
     public CarAndBookingDates() {
         Calendar today = Calendar.getInstance();
         year = today.get(Calendar.YEAR);
@@ -25,6 +35,12 @@ public class CarAndBookingDates {
         day = today.get(Calendar.DAY_OF_MONTH);
     }
 
+    /**
+     * Prompts user for car selection from previously displayed list
+     * @param carsAvailable Represents the number of cars on the list. User must
+     *                      select a number between 1 and this value.
+     * @return User car selection.
+     */
     public int carSelection(int carsAvailable) {
         int selection = 0;
         boolean validInput;
@@ -51,6 +67,12 @@ public class CarAndBookingDates {
         return selection;
     }
 
+    /**
+     * Calls the year, month and day booking date inputs to create a valid
+     * LocalDate output. If user selects an invalid date, an appropriate error
+     * message will be displayed and the user will be prompted to try again.
+     * @return valid LocalDate.
+     */
     public LocalDate getCarBookingDateFull() {
         LocalDate date = LocalDate.now();
         boolean validDate;
@@ -70,6 +92,11 @@ public class CarAndBookingDates {
         return date;
     }
 
+    /**
+     * Prompts user for a valid year. If it is not a valid year, user will be
+     * given a descriptive error message and prompted to try again.
+     * @return Valid year.
+     */
     private int promptForYear() {
         String input;
         boolean validInput;
@@ -89,6 +116,11 @@ public class CarAndBookingDates {
         return year;
     }
 
+    /**
+     * Prompts the user to enter a valid month. If not an integer between 1 and
+     * 12, user will be provided an error message and prompted to try again.
+     * @return Valid month.
+     */
     private int promptForMonth() {
         String input;
         boolean validInput;
@@ -108,6 +140,11 @@ public class CarAndBookingDates {
         return month;
     }
 
+    /**
+     * Prompts the user to enter a valid month. If not an integer between 1 and
+     * 31, user will be provided an error message and prompted to try again.
+     * @return Valid day.
+     */
     private int promptForDay() {
         String input;
         boolean validInput;
@@ -127,6 +164,7 @@ public class CarAndBookingDates {
         return day;
     }
 
+    // Validates that year is valid and not in the past.
     private boolean validateYearString(String year) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         int yearNum;
@@ -139,6 +177,7 @@ public class CarAndBookingDates {
         return (yearNum >= currentYear);
     }
 
+    // Validates that month is valid.
     private boolean validateMonthString(String month) {
         if (month.length() < 1 || month.length() > 2) {
             return false;
@@ -151,6 +190,7 @@ public class CarAndBookingDates {
         }
     }
 
+    // Validates that day is valid.
     private boolean validateDayString(String day) {
         if (day.length() < 1 || day.length() > 2) {
             return false;
