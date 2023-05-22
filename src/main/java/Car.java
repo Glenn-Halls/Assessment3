@@ -1,6 +1,12 @@
+/**
+ * Class holds information about the car to be hired.
+ */
+
 public class Car {
 
+    // Represents the daily cost of hire.
     double carRate;
+    // Represents the make and model of the car to be hired.
     private final String carName;
 
     // Class constructor
