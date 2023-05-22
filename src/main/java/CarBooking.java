@@ -59,6 +59,7 @@ public class CarBooking {
             } else {
                 car = new Car(carName, dailyRate);
             }
+            fileText.close();
         } catch (FileNotFoundException e) {
             System.out.printf("%sError: file not found.%s%n",
                     ANSI_RED, ANSI_RESET);
