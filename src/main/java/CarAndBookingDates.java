@@ -1,4 +1,5 @@
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -51,10 +52,22 @@ public class CarAndBookingDates {
     }
 
     public static LocalDate getCarBookingDateFull() {
-        year = promptForYear();
-        month = promptForMonth();
-        day = promptForDay();
-        return LocalDate.of(year, month, day);
+        LocalDate date = LocalDate.now();
+        boolean validDate;
+        do {
+            year = promptForYear();
+            month = promptForMonth();
+            day = promptForDay();
+            try {
+                date = LocalDate.of(year, month, day);
+                validDate = true;
+            } catch (DateTimeException dte) {
+                System.out.printf("%n%sError: date is not valid.%s%nPlease " +
+                        "try again%n%n", ANSI_RED, ANSI_RESET);
+                validDate = false;
+            }
+        } while (!validDate);
+        return date;
     }
 
     private static int promptForYear() {

@@ -1,4 +1,3 @@
-import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class CarRentalTester {
@@ -9,7 +8,7 @@ public class CarRentalTester {
     public static void main(String[] args){
 
         LocalDate today = LocalDate.now();
-        LocalDate start = null;
+        LocalDate start;
         LocalDate end;
 
         int carsAvailable = MenuDisplay.displayCarList();
@@ -21,19 +20,10 @@ public class CarRentalTester {
             int carSelected = CarAndBookingDates.carSelection(carsAvailable);
             boolean validDates;
             boolean validStartDate;
-            boolean validEndDate;
             do {
                 System.out.println("\nEnter your pickup date below:");
                 do {
-                    try {
-                        start = CarAndBookingDates.getCarBookingDateFull();
-                    } catch (DateTimeException dte) {
-                        System.out.printf("%n%sError: pickup date is not " +
-                                        "valid.%s%nPlease try again.%n%n",
-                                ANSI_RED, ANSI_RESET);
-                        validStartDate = false;
-                        continue;
-                    }
+                    start = CarAndBookingDates.getCarBookingDateFull();
                     validStartDate = (start.isAfter(today));
                     if (!validStartDate) {
                         System.out.printf("%n%sError: pickup date is in the " +
