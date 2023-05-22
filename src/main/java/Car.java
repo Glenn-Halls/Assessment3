@@ -1,7 +1,7 @@
 public class Car {
 
     double carRate;
-    private String carName;
+    private final String carName;
 
     // Class constructor
     Car(String carName1, double carRate1) {
@@ -10,7 +10,7 @@ public class Car {
     }
 
     // Accessor methods
-    public double getCarRate() { return carRate; }
-    public String getCarName() { return carName; }
+    double getCarRate() { return carRate; }
+    String getCarName() { return carName; }
 
 }

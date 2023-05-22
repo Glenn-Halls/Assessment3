@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class CarBooking {
     // Instance variables
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private int carNumber;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+    private final int carNumber;
     private int totalDays;
     private double newRate;
     private double cost;
@@ -26,7 +26,7 @@ public class CarBooking {
         carNumber = carNum;
     }
 
-    public void makeBooking() {
+    void makeBooking() {
         String[] carDetails = new String[6];
         File carList = new File(FILE_PATH);
         boolean premiumCar = false;
@@ -76,11 +76,11 @@ public class CarBooking {
         cost = totalDays * newRate;
     }
 
-    public double getCost() { return cost; }
-    public LocalDate getStartDate() { return startDate; }
-    public LocalDate getEndDate() { return endDate; }
-    public long getTotalDays() { return totalDays; }
-    public int getCarNumber() { return carNumber; }
-    public double getNewRate() { return newRate; }
-    public String getCarName() { return carName; }
+    double getCost() { return cost; }
+    LocalDate getStartDate() { return startDate; }
+    LocalDate getEndDate() { return endDate; }
+    long getTotalDays() { return totalDays; }
+    int getCarNumber() { return carNumber; }
+    double getNewRate() { return newRate; }
+    String getCarName() { return carName; }
 }

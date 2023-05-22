@@ -24,6 +24,8 @@ public class MenuDisplay {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
 
+    public MenuDisplay() {}
+
 
     /**
      * Displays a table of available cars, the number of cars available
@@ -31,7 +33,7 @@ public class MenuDisplay {
      * cars available.
      * @return integer number of cars available.
      */
-    public static int displayCarList() {
+    int displayCarList() {
 
         // Table display, car count and cursor position variables.
         int carCount = 0;
@@ -135,7 +137,7 @@ public class MenuDisplay {
     }
 
     // Helper method repeats specified character for width of screen
-    public static void displayBanner(char decoration) {
+    private void displayBanner(char decoration) {
         for (int i = 0; i < SCREEN_WIDTH; i++) {
             System.out.print(decoration);
         }
@@ -143,7 +145,7 @@ public class MenuDisplay {
     }
 
     // Helper method prints required number of spaces
-    public static void whitespace(int numSpaces) {
+    private void whitespace(int numSpaces) {
         for (int i = 0; i < numSpaces; i++) {
             System.out.print(" ");
         }
@@ -153,7 +155,7 @@ public class MenuDisplay {
      * Prompt user to either make a booking or exit the system.
      * @return integer 1 to make a booking or 2 to exit.
      */
-    public static int getSelection() {
+    int getSelection() {
         // Helper object
         Scanner keyboard = new Scanner(System.in);
 

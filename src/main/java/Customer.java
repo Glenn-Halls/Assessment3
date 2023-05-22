@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Customer {
 
     // Instance variables
-    private String customerName;
-    private String customerEmail;
-    private String customerAddress;
+    private final String customerName;
+    private final String customerEmail;
+    private final String customerAddress;
 
     // Constants for error highlighting text color.
     private static final String ANSI_RED = "\u001B[31m";
@@ -28,9 +28,9 @@ public class Customer {
     }
 
     // Accessor methods for Customer object
-    public String getCustomerName() {return customerName;}
-    public String getCustomerEmail() {return customerEmail;}
-    public String getCustomerAddress() {return customerAddress;}
+    String getCustomerName() {return customerName;}
+    String getCustomerEmail() {return customerEmail;}
+    String getCustomerAddress() {return customerAddress;}
 
     /**
      * Helper method for non-parameterised constructor. Prompts user to input

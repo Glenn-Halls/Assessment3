@@ -10,9 +10,9 @@ public class CarAndBookingDates {
     private static final String ANSI_RESET = "\u001B[0m";
 
     // Instance variables.
-    private static int year;
-    private static int month;
-    private static int day;
+    private int year;
+    private int month;
+    private int day;
 
     // Helper object
     private static final Scanner keyboard = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class CarAndBookingDates {
         day = today.get(Calendar.DAY_OF_MONTH);
     }
 
-    public static int carSelection(int carsAvailable) {
+    public int carSelection(int carsAvailable) {
         int selection = 0;
         boolean validInput;
         do {
@@ -51,7 +51,7 @@ public class CarAndBookingDates {
         return selection;
     }
 
-    public static LocalDate getCarBookingDateFull() {
+    public LocalDate getCarBookingDateFull() {
         LocalDate date = LocalDate.now();
         boolean validDate;
         do {
@@ -70,7 +70,7 @@ public class CarAndBookingDates {
         return date;
     }
 
-    private static int promptForYear() {
+    private int promptForYear() {
         String input;
         boolean validInput;
         int year = 0;
@@ -89,7 +89,7 @@ public class CarAndBookingDates {
         return year;
     }
 
-    private static int promptForMonth() {
+    private int promptForMonth() {
         String input;
         boolean validInput;
         int month = 0;
@@ -108,7 +108,7 @@ public class CarAndBookingDates {
         return month;
     }
 
-    private static int promptForDay() {
+    private int promptForDay() {
         String input;
         boolean validInput;
         int day = 0;
@@ -127,37 +127,37 @@ public class CarAndBookingDates {
         return day;
     }
 
-    private static boolean validateYearString(String yearString) {
+    private boolean validateYearString(String year) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int year;
-        if (yearString.length() != 4) return false;
+        int yearNum;
+        if (year.length() != 4) return false;
         try {
-            year = Integer.parseInt(yearString);
+            yearNum = Integer.parseInt(year);
         } catch (NumberFormatException nfe) {
             return false;
         }
-        return (year >= currentYear);
+        return (yearNum >= currentYear);
     }
 
-    private static boolean validateMonthString(String monthString) {
-        if (monthString.length() < 1 || monthString.length() > 2) {
+    private boolean validateMonthString(String month) {
+        if (month.length() < 1 || month.length() > 2) {
             return false;
         }
         try {
-            int month = Integer.parseInt(monthString);
-            return (month >= 1 && month <= 13);
+            int monthNum = Integer.parseInt(month);
+            return (monthNum >= 1 && monthNum <= 13);
         } catch (NumberFormatException nfe) {
             return false;
         }
     }
 
-    private static boolean validateDayString(String dayString) {
-        if (dayString.length() < 1 || dayString.length() > 2) {
+    private boolean validateDayString(String day) {
+        if (day.length() < 1 || day.length() > 2) {
             return false;
         }
         try {
-            int day = Integer.parseInt(dayString);
-            return (day >= 1 && day <= 31);
+            int dayNum = Integer.parseInt(day);
+            return (dayNum >= 1 && dayNum <= 31);
         } catch (NumberFormatException nfe) {
             return false;
         }
