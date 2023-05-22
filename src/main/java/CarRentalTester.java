@@ -48,7 +48,8 @@ public class CarRentalTester {
                 do {
                     // Prompt user for pickup date via CarAndBookingDates class.
                     start = carAndBookingDates.getCarBookingDateFull();
-                    validStartDate = (start.isAfter(today));
+                    validStartDate = (start.isAfter(today) ||
+                            start.equals(today));
                     if (!validStartDate) {
                         System.out.printf("%n%sError: pickup date is in the " +
                                         "past.%s%nPlease try again.%n%n",
