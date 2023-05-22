@@ -42,6 +42,7 @@ public class CarRentalTester {
             int carSelected = carAndBookingDates.carSelection(carsAvailable);
             // Booleans for continuation or otherwise of loop
             boolean validDateRange;
+
             boolean validStartDate;
             do {
                 System.out.println("\nEnter your pickup date below:");

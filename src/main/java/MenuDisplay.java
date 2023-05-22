@@ -172,7 +172,12 @@ public class MenuDisplay {
 
         do {
             String input = keyboard.nextLine();
-            if (input.length() != 1) {
+            if (input.length() == 0) {
+                System.out.printf("%n%sInvalid input: no input received." +
+                        "%s%n", ANSI_RED, ANSI_RESET);
+                System.out.print("Please try again:  ");
+                validInput = false;
+            } else if (input.length() != 1) {
                 System.out.printf("%n%sInvalid input: too many characters." +
                                 "%s%n", ANSI_RED, ANSI_RESET);
                 System.out.print("Enter a single character and press enter: ");
